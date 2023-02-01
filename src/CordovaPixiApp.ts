@@ -10,9 +10,8 @@ class CordovaPixiApp extends PIXI.Application {
     super({
       width: gameWidth,
       height: gameHeight,
-      backgroundColor: '#00ff00',
+      backgroundColor: 0x00ff00,
       antialias: true,
-      transparent: false,
       sharedTicker: false
     });
 

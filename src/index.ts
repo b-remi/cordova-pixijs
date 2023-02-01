@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js-legacy';
 import CordovaPixiApp from './CordovaPixiApp';
 
-let app = null;
+let app:PIXI.Application|null = null;
 
 window.addEventListener("resize", () => {
   console.log("window resize");
@@ -10,6 +10,7 @@ window.addEventListener("resize", () => {
 
 document.addEventListener("deviceready", () => {
   console.log("Running cordova-" + cordova.platformId + "@" + cordova.version);
+
   if (cordova.platformId !== 'browser') {
     screen.orientation.lock('landscape');
   }
@@ -32,6 +33,7 @@ function resizePixiApplication() {
   app.view.style.position = "absolute";
   app.view.style.left = (windowWidth - app.view.width * scale) / 2 + "px";
   app.view.style.top = (windowHeight - app.view.height * scale) / 2 + "px";
+
 }
 
 async function startPixiApplication() {
@@ -53,20 +55,22 @@ async function startPixiApplication() {
   txtRendererFPS.x = 10;
   app.stage.addChild(txtRendererFPS);
 
-  let _fpsValues = [];
-  app.ticker.add((delta) => {
-    _fpsValues.push(app.ticker.FPS);
-    if (_fpsValues.length >= 30) {
-      let total = 0;
-      for (let i = 0; i < _fpsValues.length; i++) {
-        total += _fpsValues[i];
+  let _fpsValues:number[] = [];
+  app.ticker.add(() => {
+    if(app !== null) {
+      _fpsValues.push(app.ticker.FPS);
+      if (_fpsValues.length >= 30) {
+        let total = 0;
+        for (let i = 0; i < _fpsValues.length; i++) {
+          total += _fpsValues[i];
+        }
+        txtRendererFPS.text = (total / _fpsValues.length).toFixed(2);
+        _fpsValues = [];
       }
-      txtRendererFPS.text = (total / _fpsValues.length).toFixed(2);
-      _fpsValues = [];
     }
   });
 
-  const txtRendererType = new PIXI.Text((app.renderer instanceof PIXI.CanvasRenderer) ? 'canvas' : 'webgl', { fill: 0xff0000 });
+  const txtRendererType = new PIXI.Text(app.renderer instanceof PIXI.CanvasRenderer ? 'canvas' : 'webgl', { fill: 0xff0000 });
   txtRendererType.x = 150;
   app.stage.addChild(txtRendererType);
 
