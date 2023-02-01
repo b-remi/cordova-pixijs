@@ -5,5 +5,8 @@ node_modules/
 platforms/
 plugins/
 
+# rollup generated files
+www/js/bundle.js
+
 # Log files
 *.log

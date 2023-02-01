@@ -1,0 +1,46 @@
+{
+  "name": "io.cordova.hellocordovapixi",
+  "displayName": "HelloCordovaPixi",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application wiith PixiJs library",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=dev rollup -c -w",
+    "prod": "NODE_ENV=production rollup -c",
+    "server": "NODE_ENV=dev rollup -c && cordova serve --live-reload --port=8000",
+    "android": "NODE_ENV=production rollup -c && cordova run android --device",
+    "android-dev": "NODE_ENV=dev rollup -c && cordova run android --device"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "cordova-android": "^10.1.2",
+    "cordova-browser": "^6.0.0",
+    "cordova-plugin-browsersync-gen2": "^1.1.7",
+    "cordova-plugin-screen-orientation": "^3.0.2",
+    "cordova-plugin-whitelist": "^1.3.5",
+    "es6-promise-plugin": "^4.2.2",
+    "rollup": "^2.50.5"
+  },
+  "cordova": {
+    "platforms": [
+      "browser",
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-browsersync-gen2": {},
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-whitelist": {}
+    }
+  },
+  "dependencies": {
+    "pixi.js": "^7.1.2",
+    "pixi.js-legacy": "^7.1.2"
+  }
+}
