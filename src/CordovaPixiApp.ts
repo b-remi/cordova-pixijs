@@ -15,7 +15,7 @@ class CordovaPixiApp extends PIXI.Application {
       sharedTicker: false
     });
 
-    const basicText = new PIXI.Text('Basic text in pixi');
+    const basicText = new PIXI.Text('Hello world');
     basicText.x = 50;
     basicText.y = 100;
 
